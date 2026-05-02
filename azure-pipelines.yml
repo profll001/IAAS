@@ -2,9 +2,9 @@ trigger:
 - main
 
 pool:
-  name: Agent01 # Nome do agent pool
+  name: Default # Nome do agent pool
   demands:
-    - Agent.Name -equals ag001  # Força o uso do agente específico
+    - Agent.Name -equals LML001  # Força o uso do agente específico
 
   #vmImage: 'windows-latest'
 
@@ -27,7 +27,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Criar Resource Group'
       inputs:
-        azureSubscription: 'ProfLLMBA01'  # 🔁 Substitua
+        azureSubscription: 'SCll01'  # 🔁 Substitua
         scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
@@ -37,7 +37,7 @@ stages:
       displayName: 'Deploy ARM Template'
       inputs:
         deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'ProfLLMBA01'  # 🔁 Substitua
+        azureResourceManagerConnection: 'SCll01'  # 🔁 Substitua
         action: 'Create Or Update Resource Group'
         resourceGroupName: '$(resourceGroupName)'
         location: '$(location)'
@@ -57,7 +57,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Executar CustomScriptExtension'
       inputs:
-        azureSubscription: 'ProfLLMBA01'  # 🔁 Substitua
+        azureSubscription: 'SCll01'  # 🔁 Substitua
         scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
