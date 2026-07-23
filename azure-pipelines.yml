@@ -14,8 +14,8 @@ variables:
   vmName: 'vm-iac-web-iis'
   templateFile: 'vm-iis-template.json'
   parametersFile: 'vm-iis-parameters.json'
-  indexUrl: 'https://raw.githubusercontent.com/lmlpuc/lmlarm003/refs/heads/main/src/index.html'
-  scriptUrl: 'https://raw.githubusercontent.com/lmlpuc/lmlarm003/refs/heads/main/src/scripts/site.ps1' # Verifique se esta URL está correta
+  indexUrl: 'https://raw.githubusercontent.com/profll001/IAAS/refs/heads/main/src/index.html'
+  scriptUrl: 'https://raw.githubusercontent.com/profll001/IAAS/refs/heads/main/src/scripts/site.ps1'
 
 stages:
 - stage: DeployInfra
@@ -27,7 +27,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Criar Resource Group'
       inputs:
-        azureSubscription: 'SCll01'  # 🔁 Substitua
+        azureSubscription: 'SCll01'  # 🔁 Substitua pelo nome do Service Connection criado
         scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
@@ -37,7 +37,7 @@ stages:
       displayName: 'Deploy ARM Template'
       inputs:
         deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'SCll01'  # 🔁 Substitua
+        azureResourceManagerConnection: 'SCll01'  # 🔁 Substitua pelo nome do Service Connection criado
         action: 'Create Or Update Resource Group'
         resourceGroupName: '$(resourceGroupName)'
         location: '$(location)'
@@ -57,7 +57,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Executar CustomScriptExtension'
       inputs:
-        azureSubscription: 'SCll01'  # 🔁 Substitua
+        azureSubscription: 'SCll01'  # 🔁 Substitua pelo nome do Service Connection criado
         scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
