@@ -4,7 +4,7 @@ trigger:
 pool:
   name: Default # Nome do agent pool
   demands:
-    - Agent.Name -equals LML001  # Força o uso do agente específico
+    - Agent.Name -equals LML001  # 🔁 Força o uso do agente específico - substitua pelo nome do Agent criado
 
   #vmImage: 'windows-latest'
 
